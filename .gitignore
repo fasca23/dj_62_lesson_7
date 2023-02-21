@@ -1,0 +1,5 @@
+env
+screenshots
+advertisements/__pycache__
+advertisements/migrations/__pycache__
+api_with_restrictions/__pycache__
