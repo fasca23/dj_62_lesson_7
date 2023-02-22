@@ -8,6 +8,12 @@ class AdvertisementViewSet(ModelViewSet):
     """ViewSet для объявлений."""
     queryset = Advertisement.objects.all()
     serializer_class = AdvertisementSerializer
+    permission_classes = [IsAuthenticated]
+    
+    def perform_create (self, serializer):
+        # serializer.save
+        serializer.save(creator=self.request.user)
+    
     # TODO: настройте ViewSet, укажите атрибуты для кверисета,
     #   сериализаторов и фильтров
 
