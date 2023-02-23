@@ -3,6 +3,7 @@ from rest_framework import serializers
 
 from advertisements.models import Advertisement
 
+from rest_framework.exceptions import ValidationError
 
 class UserSerializer(serializers.ModelSerializer):
     """Serializer для пользователя."""
@@ -40,7 +41,14 @@ class AdvertisementSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         """Метод для валидации. Вызывается при создании и обновлении."""
-
+        request_metod = self.context['request'].method
+        creator = self.context['request'].user
+        # print(creator)
+        status = self.context['request'].data.get('status')
+        # print(self.context['request'])
         # TODO: добавьте требуемую валидацию
+        if request_metod in ['POST', 'PATCH'] and status == 'OPEN':
+            if Advertisement.objects.filter(creator=creator).filter(status='OPEN').count() > 10:
+                raise ValidationError('У вас не может быть более 10 открытых объявлений.')
 
         return data
