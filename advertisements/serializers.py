@@ -44,10 +44,10 @@ class AdvertisementSerializer(serializers.ModelSerializer):
         request_metod = self.context['request'].method
         creator = self.context['request'].user
         # print(creator)
-        status = self.context['request'].data.get('status')
+        status = data.get('status')
         # print(self.context['request'])
         # TODO: добавьте требуемую валидацию
-        if request_metod in ['POST', 'PATCH'] and status == 'OPEN':
+        if request_metod == 'POST' or status == 'OPEN':
             if Advertisement.objects.filter(creator=creator).filter(status='OPEN').count() > 10:
                 raise ValidationError('У вас не может быть более 10 открытых объявлений.')
 

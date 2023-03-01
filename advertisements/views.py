@@ -13,27 +13,34 @@ class AdvertisementViewSet(ModelViewSet):
     """ViewSet для объявлений."""
     queryset = Advertisement.objects.all()
     serializer_class = AdvertisementSerializer
-
+    # permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
+    
     def get_queryset(self):
-        if self.action == 'favourites':
-            return self.request.user.favourites.all()
-        return super().get_queryset()
+        current_user = self.request.user
+        current_user_authorization = self.request.user.is_authenticated
+        
+        print(self.action)
+        # print(current_user_authorization)
+        
+        if current_user_authorization == 'True':
+            return Advertisement.objects.all().filter(creator=current_user)
+        return Advertisement.objects.all().exclude(status='DRAFT')
 
     # @action(methods=['get'], detail=False)
     # def favourites(self, request, *args, **kwargs):
     #     return self.list(request, *args, **kwargs)
 
 
-    permission_classes = [IsAuthenticated]
+    
 
     filterset_fields = ['creator',]
 
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_class = AdvertisementFilter
     
-    # def perform_create (self, serializer):
-    #     # serializer.save
-    #     serializer.save(creator=self.request.user)
+    def perform_create (self, serializer):
+        # serializer.save
+        serializer.save(creator=self.request.user)
     
     # TODO: настройте ViewSet, укажите атрибуты для кверисета,
     #   сериализаторов и фильтров
@@ -43,5 +50,6 @@ class AdvertisementViewSet(ModelViewSet):
         if self.action in ["create"]:
             return [IsAuthenticated()]
         elif self.action in ["update", "partial_update", "destroy"]:
+            # return [IsAuthenticated()]
             return [IsAuthenticated(), IsOwnerOrReadOnly()]
         return []

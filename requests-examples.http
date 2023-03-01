@@ -5,14 +5,17 @@
 # получение объявлений
 GET {{baseUrl}}/advertisements
 Content-Type: application/json
+# Authorization: Token 31143a999775a89cba1a2afb25bb649711688e98
+# Authorization: Token 4bad2b2e8ee67352d1a6dd6bd5bea185b086c840
+# Authorization: Token 1f06789f139e88ed9b631ec1cf43138cee90eb2f
 
 ###
 
 # создание объявления
 POST {{baseUrl}}/advertisements/
 Content-Type: application/json
-# Authorization: Token dfbb34e348107987dba9f1440196e79aef431f6e
-Authorization: Token 28bc78478ffb6fc900bcd12d92892cbe301e7066
+Authorization: Token 31143a999775a89cba1a2afb25bb649711688e98
+# Authorization: Token 4bad2b2e8ee67352d1a6dd6bd5bea185b086c840
 
 {
   "title": "Шкаф IKEA111",
@@ -22,43 +25,43 @@ Authorization: Token 28bc78478ffb6fc900bcd12d92892cbe301e7066
 ###
 
 # попытка поменять объявление
-PATCH {{baseUrl}}/advertisements/68/
+PATCH {{baseUrl}}/advertisements/34/
 Content-Type: application/json
-Authorization: Token 28bc78478ffb6fc900bcd12d92892cbe301e7066
-# Authorization: Token dfbb34e348107987dba9f1440196e79aef431f6e
+Authorization: Token 31143a999775a89cba1a2afb25bb649711688e98
+# Authorization: Token 4bad2b2e8ee67352d1a6dd6bd5bea185b086c840
 
 
 {
-  "status": "OPEN"
+  "status": "CLOSED"
 }
 ###
 
 # удаление объявления
-DELETE {{baseUrl}}/advertisements/26/
+DELETE {{baseUrl}}/advertisements/2/
 Content-Type: application/json
-# Authorization: Token 28bc78478ffb6fc900bcd12d92892cbe301e7066
-Authorization: Token dfbb34e348107987dba9f1440196e79aef431f6e
+# Authorization: Token 31143a999775a89cba1a2afb25bb649711688e98
+Authorization: Token 4bad2b2e8ee67352d1a6dd6bd5bea185b086c840
 
 ###
 
 # фильтрация по создателю
-GET {{baseUrl}}/advertisements/?creator=1
+GET {{baseUrl}}/advertisements/?creator=2
 Content-Type: application/json
 
 ###
 
 # фильтрация по дате
-GET {{baseUrl}}/advertisements/?created_at_before=2023-10-01
+GET {{baseUrl}}/advertisements/?created_at=2023-04-01
 Content-Type: application/json
 
 ###
 
 # фильтрация по статусу
-GET {{baseUrl}}/advertisements/?status=DRAFT
+GET {{baseUrl}}/advertisements/?status=OPEN
 Content-Type: application/json
 
 ###
 
 # поиск по названию
-GET {{baseUrl}}/advertisements/?search=рррр
+GET {{baseUrl}}/advertisements/?search=9999
 Content-Type: application/json
