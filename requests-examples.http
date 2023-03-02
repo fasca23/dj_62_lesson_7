@@ -5,7 +5,7 @@
 # получение объявлений
 GET {{baseUrl}}/advertisements
 Content-Type: application/json
-# Authorization: Token 31143a999775a89cba1a2afb25bb649711688e98
+Authorization: Token 31143a999775a89cba1a2afb25bb649711688e98
 # Authorization: Token 4bad2b2e8ee67352d1a6dd6bd5bea185b086c840
 # Authorization: Token 1f06789f139e88ed9b631ec1cf43138cee90eb2f
 
@@ -25,19 +25,18 @@ Authorization: Token 31143a999775a89cba1a2afb25bb649711688e98
 ###
 
 # попытка поменять объявление
-PATCH {{baseUrl}}/advertisements/34/
+PATCH {{baseUrl}}/advertisements/46/
 Content-Type: application/json
 Authorization: Token 31143a999775a89cba1a2afb25bb649711688e98
 # Authorization: Token 4bad2b2e8ee67352d1a6dd6bd5bea185b086c840
 
-
 {
-  "status": "CLOSED"
+  "status": "OPEN"
 }
 ###
 
 # удаление объявления
-DELETE {{baseUrl}}/advertisements/2/
+DELETE {{baseUrl}}/advertisements/38/
 Content-Type: application/json
 # Authorization: Token 31143a999775a89cba1a2afb25bb649711688e98
 Authorization: Token 4bad2b2e8ee67352d1a6dd6bd5bea185b086c840
@@ -65,3 +64,15 @@ Content-Type: application/json
 # поиск по названию
 GET {{baseUrl}}/advertisements/?search=9999
 Content-Type: application/json
+
+###
+
+# добавить в избранное
+POST {{baseUrl}}/advertisements/35/mark-as-favourite
+Content-Type: application/json
+Authorization: Token 31143a999775a89cba1a2afb25bb649711688e98
+# Authorization: Token 4bad2b2e8ee67352d1a6dd6bd5bea185b086c840
+
+{
+  "user_id": 1
+}
