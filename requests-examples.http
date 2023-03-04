@@ -5,74 +5,96 @@
 # получение объявлений
 GET {{baseUrl}}/advertisements
 Content-Type: application/json
-Authorization: Token 31143a999775a89cba1a2afb25bb649711688e98
-# Authorization: Token 4bad2b2e8ee67352d1a6dd6bd5bea185b086c840
-# Authorization: Token 1f06789f139e88ed9b631ec1cf43138cee90eb2f
+# Authorization: Token dfbb34e348107987dba9f1440196e79aef431f6e
+# Authorization: Token 28bc78478ffb6fc900bcd12d92892cbe301e7066
+Authorization: Token b0a0c7d418ee5c51d4bd3b65d8ac3e0371bbb971
+# Authorization: Token 3c9363198a3d0a177402c88ffad661ba70f533e5
 
 ###
 
 # создание объявления
 POST {{baseUrl}}/advertisements/
 Content-Type: application/json
-Authorization: Token 31143a999775a89cba1a2afb25bb649711688e98
-# Authorization: Token 4bad2b2e8ee67352d1a6dd6bd5bea185b086c840
+Authorization: Token dfbb34e348107987dba9f1440196e79aef431f6e
+# Authorization: Token 28bc78478ffb6fc900bcd12d92892cbe301e7066
+# Authorization: Token b0a0c7d418ee5c51d4bd3b65d8ac3e0371bbb971
+# Authorization: Token 3c9363198a3d0a177402c88ffad661ba70f533e5
 
 {
-  "title": "Шкаф IKEA111",
-  "description": "Срочно"
+  "title": "Шкаф 1",
+  "description": "admin"
 }
 
 ###
 
 # попытка поменять объявление
-PATCH {{baseUrl}}/advertisements/46/
+PATCH {{baseUrl}}/advertisements/99/
 Content-Type: application/json
-Authorization: Token 31143a999775a89cba1a2afb25bb649711688e98
-# Authorization: Token 4bad2b2e8ee67352d1a6dd6bd5bea185b086c840
+# Authorization: Token dfbb34e348107987dba9f1440196e79aef431f6e
+# Authorization: Token 28bc78478ffb6fc900bcd12d92892cbe301e7066
+# Authorization: Token b0a0c7d418ee5c51d4bd3b65d8ac3e0371bbb971
+Authorization: Token 3c9363198a3d0a177402c88ffad661ba70f533e5
+
+# {
+#   "status": "OPEN"
+# }
+
+# {
+#   "status": "CLOSED"
+# }
 
 {
-  "status": "OPEN"
+  "status": "DRAFT"
 }
+
 ###
 
 # удаление объявления
-DELETE {{baseUrl}}/advertisements/38/
+DELETE {{baseUrl}}/advertisements/102/
 Content-Type: application/json
-# Authorization: Token 31143a999775a89cba1a2afb25bb649711688e98
-Authorization: Token 4bad2b2e8ee67352d1a6dd6bd5bea185b086c840
+# Authorization: Token dfbb34e348107987dba9f1440196e79aef431f6e
+Authorization: Token 28bc78478ffb6fc900bcd12d92892cbe301e7066
+# Authorization: Token b0a0c7d418ee5c51d4bd3b65d8ac3e0371bbb971
+# Authorization: Token 3c9363198a3d0a177402c88ffad661ba70f533e5
+
 
 ###
 
 # фильтрация по создателю
 GET {{baseUrl}}/advertisements/?creator=2
 Content-Type: application/json
+# Authorization: Token dfbb34e348107987dba9f1440196e79aef431f6e
 
 ###
 
-# фильтрация по дате
+# фильтрация по дате ???
 GET {{baseUrl}}/advertisements/?created_at=2023-04-01
 Content-Type: application/json
 
 ###
 
 # фильтрация по статусу
-GET {{baseUrl}}/advertisements/?status=OPEN
+GET {{baseUrl}}/advertisements/?status=DRAFT
 Content-Type: application/json
+# Authorization: Token dfbb34e348107987dba9f1440196e79aef431f6e
 
 ###
 
-# поиск по названию
+# поиск по названию ???
 GET {{baseUrl}}/advertisements/?search=9999
 Content-Type: application/json
+# Authorization: Token dfbb34e348107987dba9f1440196e79aef431f6e
 
 ###
 
-# добавить в избранное
-POST {{baseUrl}}/advertisements/35/mark-as-favourite
+# добавить в избранное ???
+POST {{baseUrl}}/advertisements/mark-as-favourite/101
 Content-Type: application/json
-Authorization: Token 31143a999775a89cba1a2afb25bb649711688e98
-# Authorization: Token 4bad2b2e8ee67352d1a6dd6bd5bea185b086c840
+# Authorization: Token dfbb34e348107987dba9f1440196e79aef431f6e
+Authorization: Token 28bc78478ffb6fc900bcd12d92892cbe301e7066
+# Authorization: Token b0a0c7d418ee5c51d4bd3b65d8ac3e0371bbb971
+# Authorization: Token 3c9363198a3d0a177402c88ffad661ba70f533e5
 
 {
-  "user_id": 1
+  "creator": "admin"
 }
